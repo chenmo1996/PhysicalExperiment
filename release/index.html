@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PhyExam</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-title" content="大物实验计算器">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="http://apps.bdimg.com/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <style>
+    body {
+        -webkit-transform-style: preserve-3d;
+        -webkit-backface-visibility: hidden;
+    }
+    
+    .tc {
+        text-align: center;
+    }
+    </style>
+</head>
+
+<body>
+    <div data-role="page" id="index">
+        <div data-role="header" data-position="fixed">
+            <h1>数据处理</h1>
+        </div>
+        <div role="main" class="ui-content">
+            <div class="ui-field-contain">
+                <ol data-role="listview">
+                    <li><a href="#exp7" data-transition="slide">稳态法测固体的导热系数</a></li>
+                    <li><a href="#exp8_mid" data-transition="slide">液体表面张力</a></li>
+                    <li><a href="#exp9" data-transition="slide">刚体的转动惯量的测量</a></li>
+                    <li><a href="#exp10_mid" data-transition="slide">电路暂态过程</a></li>
+                    <li><a href="#exp11_mid" data-transition="slide">光电效应与普朗克常量的测定</a></li>
+                    <li><a href="#exp12" data-transition="slide">组合光学(牛顿环)</a></li>
+                </ol>
+            </div>
+        </div>
+        <!-- <div data-role="footer">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#" data-icon="grid" class="ui-btn-active">查询</a></li>
+                    <li><a href="#" data-icon="star">收藏</a></li>
+                    <li><a href="#" data-icon="gear">设置</a></li>
+                </ul>
+            </div>
+        </div> -->
+    </div>
+    <div data-role="page" id="exp7">
+        <div data-role="header" data-position="fixed">
+            <a data-rel="back" data-direction="reverse">返回</a>
+            <h1>实验公式&数据输入</h1>
+        </div>
+        <div role="main" class="ui-content">
+            <div class="ui-field-contain">
+                <ol data-role="listview">
+                    <li>\(\frac{{\Delta T}}{{\Delta t}} = \frac{{\mathop \sum \nolimits_{i = 1}^{10} \Delta {T_i}/10}}{{10 \times 30}}\)</li>
+                    <li>\(\lambda = \frac{{mc{h_B}\left( {\overline {{R_C}} + 2\overline {{h_c}} } \right)}}{{2\pi {R_B}^2\left( {{T_1} - {T_2}} \right)\left( {\overline {{R_C}} + \overline {{h_C}} } \right)}} \cdot \frac{{\Delta T}}{{\Delta t}}\)</li>
+                    <li>
+                        \({U_\lambda } = \frac{{mc{h_B}\left( {\overline {{R_C}} + 2\overline {{h_c}} } \right)}}{{2\pi {R_B}^2\left( {{T_1} - {T_2}} \right)\left( {\overline {{R_C}} + \overline {{h_C}} } \right)}} \cdot {U_{\left( {\frac{T}{t}} \right)}}\)
+                    </li>
+                </ol>
+                <!-- <ul data-role="listview">
+                    <li text-aligin="center">数据输入</li>
+                </ul> -->
+            </div>
+            <div class="ui-field-contain">
+                <form>
+                    <div data-role="fieldcontain">
+                        <ul data-role="listview">
+                            <li data-role="list-divider" style="text-align:center">输入数据</li>
+                            <li class="ui-field-contain">
+                                <label for="exp7_hB">hB:</label>
+                                <input type="text" name="hB" id="exp7_hB">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp7_RB">RB:</label>
+                                <input type="text" name="RB" id="exp7_RB">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp7_hC">hC:</label>
+                                <input type="text" name="hC" id="exp7_hC">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp7_RC">RC:</label>
+                                <input type="text" name="RC" id="exp7_RC">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp7_mc">mc:</label>
+                                <input type="text" name="mc" id="exp7_mc">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp7_T">T:</label>
+                                <input type="text" name="T" id="exp7_T">
+                            </li>
+                            <li class="ui-field-contain">
+                                <div class="ui-grid-a">
+                                    <div class="ui-block-a">
+                                        <input type="submit" value="立即计算">
+                                    </div>
+                                    <div class="ui-block-b">
+                                        <input type="button" value="一键生成" class="generate">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+                <div data-role="fieldcontain">
+                    <ul class="answersList" data-role="listview"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-role="page" id="exp8_mid">
+        <div data-role="header" data-position="fixed">
+            <a data-rel="back" data-direction="reverse">返回</a>
+            <h1>实验选择</h1>
+        </div>
+        <div role="main" class="ui-content">
+            <div class="ui-field-contain">
+                <ul data-role="listview">
+                    <li><a href="#exp8_1st" data-transition="slide" style="text-align:center">力敏传感器定标</a></li>
+                    <li><a href="#exp8_2nd" data-transition="slide" style="text-align:center">毛细管法</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div data-role="page" id="exp8_1st">
+        <div data-role="header" data-position="fixed">
+            <a data-rel="back" data-direction="reverse">返回</a>
+            <h1>实验公式</h1>
+        </div>
+        <div role="main" class="ui-content">
+            <div class="ui-field-contain">
+                <ol data-role="listview">
+                    <li>\(\sigma = \frac{{\Delta U}}{{\pi \left( {{D_1} + {D_2}} \right){\rm{k}}}}\)</li>
+                </ol>
+            </div>
+            <div class="ui-field-contain">
+                <form method="post" action="/api/v1/experiment/8">
+                    <div data-role="fieldcontain">
+                        <ul data-role="listview">
+                            <li data-role="list-divider" style="text-align:center">输入数据</li>
+                            <li class="ui-field-contain">
+                                <label for="exp8_m">m:</label>
+                                <input type="text" name="m" id="exp8_m">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp8_U1">递增电压U:</label>
+                                <input type="text" name="asc_U" id="exp8_U1">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp8_U1">递减电压U:</label>
+                                <input type="text" name="desc_U" id="exp8_U2">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp8_U1">破膜前U:</label>
+                                <input type="text" name="before_U" id="exp8_U2">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp8_U1">破膜后U:</label>
+                                <input type="text" name="after_U" id="exp8_U2">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp8_U1">D1:</label>
+                                <input type="text" name="D1" id="exp8_U2">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp8_U1">D2:</label>
+                                <input type="text" name="D2" id="exp8_U2">
+                            </li>
+                            <li class="ui-field-contain">
+                                <div class="ui-grid-a">
+                                    <div class="ui-block-a">
+                                        <input type="submit" value="立即计算">
+                                    </div>
+                                    <div class="ui-block-b">
+                                        <input type="button" value="一键生成" class="generate">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+                <div data-role="fieldcontain">
+                    <ul class="answersList" data-role="listview"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-role="page" id="exp8_2nd">
+        <div data-role="header" data-position="fixed">
+            <a data-rel="back" data-direction="reverse">返回</a>
+            <h1>实验公式</h1>
+        </div>
+        <div role="main" class="ui-content">
+            <div class="ui-field-contain">
+                <ol data-role="listview">
+                    <li>\(\sigma = \frac{{\Delta U}}{{\pi \left( {{D_1} + {D_2}} \right){\rm{k}}}}\)</li>
+                    <li>\(\sigma = \frac{1}{4}\rho gd\left( {\bar h + \frac{{\bar d}}{4}} \right)\)</li>
+                </ol>
+            </div>
+            <div class="ui-field-contain">
+                <form method="post" action="/api/v1/experiment/8">
+                    <div data-role="fieldcontain">
+                        <ul data-role="listview">
+                            <li data-role="list-divider" style="text-align:center">输入数据</li>
+                            <li class="ui-field-contain">
+                                <label for="exp8_m">h1:</label>
+                                <input type="text" name="h1" id="exp8_m">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp8_U1">h2:</label>
+                                <input type="text" name="h2" id="exp8_U1">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp8_U1">d1:</label>
+                                <input type="text" name="d1" id="exp8_U2">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp8_U1">d2:</label>
+                                <input type="text" name="d2" id="exp8_U2">
+                            </li>
+                            <li class="ui-field-contain">
+                                <div class="ui-grid-a">
+                                    <div class="ui-block-a">
+                                        <input type="submit" value="立即计算">
+                                    </div>
+                                    <div class="ui-block-b">
+                                        <input type="button" value="一键生成" class="generate">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+                <div data-role="fieldcontain">
+                    <ul class="answersList" data-role="listview"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-role="page" id="exp9">
+        <div data-role="header" data-position="fixed">
+            <a data-rel="back" data-direction="reverse">返回</a>
+            <h1>实验公式</h1>
+        </div>
+        <div role="main" class="ui-content">
+            <div class="ui-field-contain">
+                <ol data-role="listview">
+                    <li>\({\rm{I}} = \sum {m_i}{r_i}^2\)</li>
+                    <li>\(K = 4{\pi ^2}\frac{{{I_{{\rm{column}}}}}}{{{T^2} - {T_0}^2}}\)</li>
+                </ol>
+            </div>
+            <div class="ui-field-contain">
+                <form method="post" action="/api/v1/experiment/9">
+                    <div data-role="fieldcontain">
+                        <ul data-role="listview">
+                            <li data-role="list-divider" style="text-align:center">输入数据</li>
+                            <li class="ui-field-contain">
+                                <label for="exp9_D1">D1:</label>
+                                <input type="text" name="D1" id="exp9_D1">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp9_D2">D2:</label>
+                                <input type="text" name="D2" id="exp9_D2">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp9_m">m:</label>
+                                <input type="text" name="m" id="exp9_m">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp9_h">h:</label>
+                                <input type="text" name="h" id="exp9_h">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp9_r">r:</label>
+                                <input type="text" name="r" id="exp9_r">
+                            </li>
+                            <li class="ui-field-contain">
+                                <div class="ui-grid-a">
+                                    <div class="ui-block-a">
+                                        <input type="submit" value="立即计算">
+                                    </div>
+                                    <div class="ui-block-b">
+                                        <input type="button" value="一键生成" class="generate">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+                <div data-role="fieldcontain">
+                    <ul class="answersList" data-role="listview"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-role="page" id="exp10_mid">
+        <div data-role="header" data-position="fixed">
+            <a data-rel="back" data-direction="reverse">返回</a>
+            <h1>实验选择</h1>
+        </div>
+        <div role="main" class="ui-content">
+            <div class="ui-field-contain">
+                <ul data-role="listview">
+                    <li><a href="#exp10_1st" data-transition="slide" style="text-align:center">RC串联电路</a></li>
+                    <li><a href="#exp10_2nd" data-transition="slide" style="text-align:center">RCL串联电路</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div data-role="page" id="exp10_1st">
+        <div data-role="header" data-position="fixed">
+            <a data-rel="back" data-direction="reverse">返回</a>
+            <h1>实验公式</h1>
+        </div>
+        <div role="main" class="ui-content">
+            <div class="ui-field-contain">
+                <ol data-role="listview">
+                    <li>\({\tau _{{\rm{mesure}}}} = \frac{{{t_0}}}{{ln2}}\)</li>
+                    <li>\({\tau _{{\rm{ideal}}}} = R + rC\)</li>
+                    <!-- <li>\({T'_{{\rm{ideal}}}} = \frac{{2\pi \sqrt {LC} }}{{\sqrt {1 - \frac{{{{(R + r)}^2}C}}{{4L}}} }}\)</li>
+                    <li>\({R_{c{\rm{iedal}}}} = 2\sqrt {\frac{L}{C}} \)</li> -->
+                </ol>
+            </div>
+            <div class="ui-field-contain">
+                <form method="post" action="/api/v1/experiment/9">
+                    <div data-role="fieldcontain">
+                        <ul data-role="listview">
+                            <li data-role="list-divider" style="text-align:center">输入数据</li>
+                            <li class="ui-field-contain">
+                                <label for="exp10_f">f:</label>
+                                <input type="text" name="f" id="exp10_f">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp10_r">r:</label>
+                                <input type="text" name="r" id="exp10_r">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp10_C">C:</label>
+                                <input type="text" name="C" id="exp10_C">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp10_R">R:</label>
+                                <input type="text" name="R" id="exp10_R">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp10_t0">t0:</label>
+                                <input type="text" name="t0" id="exp10_t0">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp10_t0">E:</label>
+                                <input type="text" name="E" id="exp10_E">
+                            </li>
+                            <li class="ui-field-contain">
+                                <div class="ui-grid-a">
+                                    <div class="ui-block-a">
+                                        <input type="submit" value="立即计算">
+                                    </div>
+                                    <div class="ui-block-b">
+                                        <input type="button" value="一键生成" class="generate">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+                <div data-role="fieldcontain">
+                    <ul class="answersList" data-role="listview"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-role="page" id="exp10_2nd">
+        <div data-role="header" data-position="fixed">
+            <a data-rel="back" data-direction="reverse">返回</a>
+            <h1>实验公式</h1>
+        </div>
+        <div role="main" class="ui-content">
+            <div class="ui-field-contain">
+                <ol data-role="listview">
+                    <!-- <li>\({\tau _{{\rm{mesure}}}} = \frac{{{t_0}}}{{ln2}}\)</li>
+                    <li>\({\tau _{{\rm{ideal}}}} = R + rC\)</li> -->
+                    <li>\({T'_{{\rm{ideal}}}} = \frac{{2\pi \sqrt {LC} }}{{\sqrt {1 - \frac{{{{(R + r)}^2}C}}{{4L}}} }}\)</li>
+                    <li>\({R_{c{\rm{iedal}}}} = 2\sqrt {\frac{L}{C}} \)</li>
+                </ol>
+            </div>
+            <div class="ui-field-contain">
+                <form method="post" action="/api/v1/experiment/9">
+                    <div data-role="fieldcontain">
+                        <ul data-role="listview">
+                            <li data-role="list-divider" style="text-align:center">输入数据</li>
+                            <li class="ui-field-contain">
+                                <label for="exp10_f">f:</label>
+                                <input type="text" name="f" id="exp10_f">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp10_r">r:</label>
+                                <input type="text" name="r" id="exp10_r">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp10_C">C:</label>
+                                <input type="text" name="C" id="exp10_C">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp10_R">R:</label>
+                                <input type="text" name="R" id="exp10_R">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp10_t0">t3:</label>
+                                <input type="text" name="t3" id="exp10_t3">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp10_t0">E:</label>
+                                <input type="text" name="E" id="exp10_E">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp10_t0">L:</label>
+                                <input type="text" name="L" id="exp10_L">
+                            </li>
+                            <li class="ui-field-contain">
+                                <div class="ui-grid-a">
+                                    <div class="ui-block-a">
+                                        <input type="submit" value="立即计算">
+                                    </div>
+                                    <div class="ui-block-b">
+                                        <input type="button" value="一键生成" class="generate">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+                <div data-role="fieldcontain">
+                    <ul class="answersList" data-role="listview"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-role="page" id="exp11_mid">
+        <div data-role="header" data-position="fixed">
+            <a data-rel="back" data-direction="reverse">返回</a>
+            <h1>实验选择</h1>
+        </div>
+        <div role="main" class="ui-content">
+            <div class="ui-field-contain">
+                <ul data-role="listview">
+                    <li><a href="#exp11_1st" data-transition="slide" style="text-align:center">测量普郎克常数h，红限频率v0</a></li>
+                    <li><a href="#exp11_2nd" data-transition="slide" style="text-align:center">孔径与光电流的最小二乘法拟合</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div data-role="page" id="exp11_1st">
+        <div data-role="header" data-position="fixed">
+            <a data-rel="back" data-direction="reverse">返回</a>
+            <h1>实验公式</h1>
+        </div>
+        <div role="main" class="ui-content">
+            <div class="ui-field-contain">
+                <ol data-role="listview">
+                    <li>\({{\rm{h}}_{{\rm{measure}}}} = {\rm{k}} \cdot {\rm{e}}\)</li>
+                    <li>\({{\rm{v}}_0} = \frac{{\rm{W}}}{{\rm{h}}} = \left| {\frac{{\rm{b}}}{{\rm{k}}}} \right|\)</li>
+                </ol>
+            </div>
+            <div class="ui-field-contain">
+                <form method="post">
+                    <div data-role="fieldcontain">
+                        <ul data-role="listview">
+                            <li data-role="list-divider" style="text-align:center">输入数据</li>
+                            <li class="ui-field-contain">
+                                <label for="exp11_λ">Us1:</label>
+                                <input type="text" name="Us1" id="exp11_λ">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp11_v">Us2:</label>
+                                <input type="text" name="Us2" id="exp11_v">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp11_Us">Us3:</label>
+                                <input type="text" name="Us3" id="exp11_Us">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp11_Us">Us4:</label>
+                                <input type="text" name="Us4" id="exp11_Us">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp11_Us">Us5:</label>
+                                <input type="text" name="Us5" id="exp11_Us">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp11_Us">lambda:</label>
+                                <input type="text" name="lambda" id="exp11_Us">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp11_Us">v:</label>
+                                <input type="text" name="v" id="exp11_Us">
+                            </li>
+                            <li class="ui-field-contain">
+                                <div class="ui-grid-a">
+                                    <div class="ui-block-a">
+                                        <input type="submit" value="立即计算">
+                                    </div>
+                                    <div class="ui-block-b">
+                                        <input type="button" value="一键生成" class="generate">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+                <div data-role="fieldcontain">
+                    <ul class="answersList" data-role="listview"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-role="page" id="exp11_2nd">
+        <div data-role="header" data-position="fixed">
+            <a data-rel="back" data-direction="reverse">返回</a>
+            <h1>实验公式</h1>
+        </div>
+        <div role="main" class="ui-content">
+            <div class="ui-field-contain">
+                <ol data-role="listview">
+                    <li>\({{\rm{h}}_{{\rm{measure}}}} = {\rm{k}} \cdot {\rm{e}}\)</li>
+                    <li>\({{\rm{v}}_0} = \frac{{\rm{W}}}{{\rm{h}}} = \left| {\frac{{\rm{b}}}{{\rm{k}}}} \right|\)</li>
+                </ol>
+            </div>
+            <div class="ui-field-contain">
+                <form method="post">
+                    <div data-role="fieldcontain">
+                        <ul data-role="listview">
+                            <li data-role="list-divider" style="text-align:center">输入数据</li>
+                            <li class="ui-field-contain">
+                                <label for="exp11_λ">phi:</label>
+                                <input type="text" name="phi" id="exp11_λ">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp11_v">l:</label>
+                                <input type="text" name="l" id="exp11_v">
+                            </li>
+                            <li class="ui-field-contain">
+                                <div class="ui-grid-a">
+                                    <div class="ui-block-a">
+                                        <input type="submit" value="立即计算">
+                                    </div>
+                                    <div class="ui-block-b">
+                                        <input type="button" value="一键生成" class="generate">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+                <div data-role="fieldcontain">
+                    <ul class="answersList" data-role="listview"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-role="page" id="exp12">
+        <div data-role="header" data-position="fixed">
+            <a data-rel="back" data-direction="reverse">返回</a>
+            <h1>实验公式</h1>
+        </div>
+        <div role="main" class="ui-content">
+            <div class="ui-field-contain">
+                <ol data-role="listview">
+                    <li>\({\rm{R}} = \frac{{\left| {{{\overline {{{\rm{D}}_{20}}} }^2} - {{\overline {{{\rm{D}}_{10}}} }^2}} \right|}}{{4{\rm{m\lambda }}}}\)</li>
+                    <li>\({{\rm{U}}_{\rm{R}}} = \sqrt {4{{\rm{U}}_{{\rm{D}}10}}^2 + 4{{\rm{U}}_{{\rm{D}}20}}^2} \)</li>
+                </ol>
+            </div>
+            <div class="ui-field-contain">
+                <form method="post" action="/api/v1/experiment/9">
+                    <div data-role="fieldcontain">
+                        <ul data-role="listview">
+                            <li data-role="list-divider" style="text-align:center">输入数据</li>
+                            <li class="ui-field-contain">
+                                <label for="exp12_T10">D101:</label>
+                                <input type="text" name="D101" id="exp12_T10">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp12_T20">D201:</label>
+                                <input type="text" name="D201" id="exp12_T20">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp12_T20">D102:</label>
+                                <input type="text" name="D102" id="exp12_T20">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp12_T20">D202:</label>
+                                <input type="text" name="D202" id="exp12_T20">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp12_T20">D103:</label>
+                                <input type="text" name="D103" id="exp12_T20">
+                            </li>
+                            <li class="ui-field-contain">
+                                <label for="exp12_T20">D203:</label>
+                                <input type="text" name="D203" id="exp12_T20">
+                            </li>
+                            <li class="ui-field-contain">
+                                <div class="ui-grid-a">
+                                    <div class="ui-block-a">
+                                        <input type="submit" value="立即计算">
+                                    </div>
+                                    <div class="ui-block-b">
+                                        <input type="button" value="一键生成" class="generate">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+                <div data-role="fieldcontain">
+                    <ul class="answersList" data-role="listview"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-role="dialog" id="wrongMsg">
+        <div data-role="content">
+            <p>对不起，请按照要求输入数据</p>
+            <a data-rel="back">重新输入</a>
+        </div>
+    </div>
+    <script src="script.min.js"></script>
+</body>
+
+</html>

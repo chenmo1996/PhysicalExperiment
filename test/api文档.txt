@@ -1,0 +1,216 @@
+
+以下所有路由都加前缀/api/v1
+
+若未标明类型，则表明数据为浮点数或字符串
+若类型为list，则表明数据为一个数组，如list 5表示长度为5的数组
+
+所有sigma、lambda、tau、phi代表对应的希腊字母，具体对应字母可查维基百科
+
+所有get请求的request均为空
+
+/experiment/7
+    计算 post:
+        request:
+            {
+                mc: ,
+                hB: ,
+                hC: ,
+                RB: ,
+                RC: ,
+                T: ,
+            }
+        response:
+            {
+                T/t: ,
+                lambda: ,
+                Ulambda: ,
+            }
+
+    生成数据 get:
+        response:
+            {
+                hB: list 5,
+                RB: list 5,
+                hC: list 5,
+                RC: list 5,
+                T: list 20,
+                以上为生成的输入数据
+
+                T/t: ,
+                lambda: ,
+                Ulambda: ,
+                以上为计算结果
+            }
+
+/experiment/8/1     力敏传感器定标
+    计算 post:
+        request:
+            {
+                m: ,
+                asc_U: ,
+                desc_U: ,
+                before_U: ,
+                after_U: ,
+                D1: ,
+                D2: ,
+            }
+        response:
+            {
+                k: ,
+                b: ,
+                sigma: ,
+                Ur: ,
+            }
+
+/experiment/8/2     毛细管法
+    计算 post:
+        request:
+            {
+                h1: ,
+                h2: ,
+                d1: ,
+                d2: ,
+            }
+        response:
+            {
+                h: ,
+                d: ,
+                sigma: ,
+                Ur: ,
+            }
+
+第九个页面分级感觉比较复杂，先空着不做
+
+/experiment/10/1    RC串联电路
+    计算 post:
+        request:
+            {
+                f: ,
+                E: ,
+                r: ,
+                C: ,
+                R: ,
+                t0: ,
+            }
+        response:
+            {
+                tau: ,
+                Er: ,
+            }
+
+    生成数据 get:
+        response:
+            {
+                f: ,
+                E: ,
+                r: ,
+                C: ,
+                R: ,
+                t0: ,
+                以上为生成数据
+
+                tau: ,
+                Er: ,
+                以上为计算结果
+            }
+
+/experiment/10/2    RCL串联电路
+    计算 post:
+        request:
+            {
+                f: ,
+                E: ,
+                r: ,
+                C: ,
+                R: ,
+                t3: ,
+                L: ,
+            }
+        response:
+            {
+                T1: , //T'测
+                T2: , //T'理
+                ErT: ,
+                Rc1: , //Rc测
+                Rc2: , //Rc理
+                ErRc: ,
+            }
+
+    生成数据 get:
+        response:
+            {
+                f: ,
+                E: ,
+                r: ,
+                C: ,
+                R: ,
+                t3: ,
+                L: ,
+                以上为生成数据
+
+                T1: , //T'测
+                T2: , //T'理
+                ErT: ,
+                Rc1: , //Rc测
+                Rc2: , //Rc理
+                ErRc: ,
+                以上为计算结果
+            }
+
+/experiment/11/1    测量普郎克常数h，红限频率v0
+    计算 post:
+        request:
+            {
+                Us1: , //第一组Us 下同
+                Us2: ,
+                Us3: ,
+                Us4: ,
+                Us5: ,
+                v: ,
+                lambda: ,
+            }
+        response:
+            {
+                h0: ,
+                k: ,
+                b: ,
+                h1: ,
+                v0: ,
+                Ur: ,
+            }
+
+/experiment/11/2    孔径与光电流的最小二乘法拟合
+    计算 post:
+        request:
+            {
+                phi: ,
+                l: ,
+            }
+        response:
+            {
+                k: ,
+                b: ,
+            }
+
+/experiment/12
+    计算 post:
+        request:
+            {
+                D101: , //第一组D10，左在前右在后，下同
+                D201: , //第一组D20，左在前右在后，下同
+                D102: ,
+                D202: ,
+                D103: ,
+                D203: ,
+            }
+        response:
+            {
+                D10: ,
+                D20: ,
+                UD10A: ,
+                UD20A: ,
+                UD10: ,
+                UD20: ,
+                UR: ,
+            }
+
